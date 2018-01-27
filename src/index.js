@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
-import {   Router, Route } from "react-router-dom";
+import {   Switch, Router, Route } from "react-router-dom";
 import createBrowserHistory from "history/createBrowserHistory";
 
 import * as mobx from 'mobx';
@@ -11,6 +11,8 @@ import serviceWorkerRegister from "./registerServiceWorker";
 import UserStore from "./store/user";
 // Import Components
 import App from "./App";
+import Homepage from "./pages/home/homepage"
+import Order from "./pages/order/order"
 
 // Execute the ServiceWorker
 serviceWorkerRegister();
@@ -36,7 +38,10 @@ const store = {
 const router = (
   <Provider {...store}>
     <Router history={history}>
-      <Route exact path="/" component={App} />
+      <Switch>
+        <Route exact path="/" component={Homepage} />
+        <Route exact path="/order" component={Order} />
+      </Switch>      
     </Router>
   </Provider>
 );
